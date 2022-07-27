@@ -59,6 +59,7 @@ bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm4"
 
 # copy result from vm
 echo 9. copy result from vm
+rm netperf.result.*
 scp usernet-vm4:netperf.result.txt netperf.result.txt
 
 # extract csv from raw result
