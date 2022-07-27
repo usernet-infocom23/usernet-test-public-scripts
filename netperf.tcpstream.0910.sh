@@ -79,7 +79,7 @@ curl $(curl -s "https://bsakxn20uj.execute-api.us-east-1.amazonaws.com/default/u
 # shutdown vm
 echo 14. shut down vm
 ssh RDMA-10 '
-bash -l - c "virsh shutdown usernet-vm3"
-bash -l - c "virsh shutdown usernet-vm4"
-bash -l -c "./stop-ivshmem-server.sh"
+bash -l -c "virsh shutdown usernet-vm3"
+bash -l -c "virsh shutdown usernet-vm4"
+bash -l -c "./usernet-module/stop-ivshmem-server.sh"
 '
