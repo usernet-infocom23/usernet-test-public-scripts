@@ -4,10 +4,10 @@
 # ssh RDMA-10 'bash -l -c "virsh shutdown usernet-vm4"'
 # ssh RDMA-09 'bash -l -c "virsh start usernet-vm3"'
 # ssh RDMA-10 'bash -l -c "virsh start usernet-vm4"'
-# ssh RDMA-10 '
-# cd usernet-module
-# bash -l -c "./start-ivshmem-server.sh"
-# '
+ssh RDMA-10 '
+cd usernet-module
+bash -l -c "./start-ivshmem-server.sh"
+'
 
 # wait vm start
 # sleep 10
@@ -92,13 +92,13 @@ zip -r result.zip result
 curl $(curl -s "https://bsakxn20uj.execute-api.us-east-1.amazonaws.com/default/usernet-paper-upload") --upload-file result.zip --header "X-Amz-ACL: public-read"
 
 # shutdown vm
-# echo 14. shut down vm
-# ssh RDMA-10 '
-# bash -l -c "virsh shutdown usernet-vm3"
-# bash -l -c "virsh shutdown usernet-vm4"
-# cd usernet-module
-# bash -l -c "./stop-ivshmem-server.sh"
-# '
+echo 14. shut down vm
+ssh RDMA-10 '
+bash -l -c "virsh shutdown usernet-vm3"
+bash -l -c "virsh shutdown usernet-vm4"
+cd usernet-module
+bash -l -c "./stop-ivshmem-server.sh"
+'
 
 # wait for vm shutdown
 # sleep 10
