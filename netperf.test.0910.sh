@@ -1,4 +1,5 @@
-echo 0. run vm
+# start vm
+echo 0. start vm
 ssh RDMA-09 'bash -l - c "virsh start usernet-vm3"'
 ssh RDMA-10 'bash -l - c "virsh start usernet-vm4"'
 ssh RDMA-10 'bash -l -c "./start-ivshmem-server.sh"'
@@ -51,7 +52,6 @@ ssh usernet-vm4 'bash -l -c "sudo ./usernet-module/unload-intr-driver.sh"'
 ssh RDMA-10 '
 bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm3"
 bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm4"
-bash -l -c "./stop-ivshmem-server.sh"
 '
 
 # copy result from vm
@@ -69,9 +69,17 @@ wget https://github.com/usernet-infocom23/usernet-test/raw/main/plot.netperf.py 
 python3 plot.netperf.py netperf.result.csv
 
 # upload result to s3
-echo 12. upload result to s3
+echo 12. zip and upload result
 rm -rf result && mkdir result
 mv netperf.png result/
 rm result.zip
 zip -r result.zip result
 curl $(curl -s "https://bsakxn20uj.execute-api.us-east-1.amazonaws.com/default/usernet-paper-upload") --upload-file result.zip --header "X-Amz-ACL: public-read"
+
+# shutdown vm
+echo 14. shut down vm
+ssh RDMA-10 '
+bash -l - c "virsh shutdown usernet-vm3"
+bash -l - c "virsh shutdown usernet-vm4"
+bash -l -c "./stop-ivshmem-server.sh"
+'
