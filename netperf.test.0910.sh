@@ -68,6 +68,7 @@ wget https://github.com/usernet-infocom23/usernet-test/raw/main/plot.netperf.py 
 python3 plot.netperf.py netperf.result.csv
 
 # upload result to s3
+echo 12. upload result to s3
 rm -rf result && mkdir result
 mv netperf.png result/
 rm result.zip
