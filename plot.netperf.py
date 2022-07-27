@@ -26,7 +26,7 @@ legend_font_size = 10
 
 # ----- throughput -----
 data = csv.reader(open(sys.argv[1], newline='',
-                  encoding='utf-16'), delimiter=',')
+                  encoding='utf-8'), delimiter=',')
 
 x = []
 y = []
