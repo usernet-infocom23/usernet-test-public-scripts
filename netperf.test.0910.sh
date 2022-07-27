@@ -24,7 +24,7 @@ ssh RDMA-10 -t 'bash -l -c "./usernet-module/virsh-migrate.sh usernet-vm4 RDMA-0
 
 # attach
 echo 5. attach ivshmem doorbell
-ssh RDMA-10 '
+ssh RDMA-09 '
 bash -l -c "./usernet-module/attach-ivshmem-doorbell.sh usernet-vm3"
 bash -l -c "./usernet-module/attach-ivshmem-doorbell.sh usernet-vm4"
 '
@@ -42,7 +42,7 @@ sleep 50
 echo 8. rollback
 ssh usernet-vm3 'bash -l -c "sudo ./usernet-module/unload-amd-driver.sh"'
 ssh usernet-vm4 'bash -l -c "sudo ./usernet-module/unload-amd-driver.sh"'
-ssh RDMA-10 '
+ssh RDMA-09 '
 bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm3"
 bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm4"
 '
