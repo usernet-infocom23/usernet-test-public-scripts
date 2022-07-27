@@ -52,6 +52,8 @@ sleep 25
 # migration
 echo 4. migration
 ssh RDMA-09 -t 'bash -l -c "./usernet-module/virsh-migrate.sh usernet-vm3 RDMA-10"'
+ssh RDMA-09 -t 'bash -l -c "./usernet-module/virsh-migrate.sh usernet-vm3 RDMA-10"'
+ssh RDMA-09 -t 'bash -l -c "./usernet-module/virsh-migrate.sh usernet-vm3 RDMA-10"'
 
 # attach
 echo 5. attach ivshmem doorbell
