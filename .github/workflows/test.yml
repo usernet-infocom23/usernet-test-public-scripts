@@ -14,10 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master
-      - name: Build Test
-        run: |
-          gcc -o a a.c
+          ref: main
       - name: executing remote ssh commands
         id: ssh1
         uses: appleboy/ssh-action@master
