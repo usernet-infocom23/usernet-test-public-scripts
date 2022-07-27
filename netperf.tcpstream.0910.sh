@@ -64,6 +64,12 @@ bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm4"
 
 # copy result from vm
 echo 9. copy result from vm
+vm4=$(ssh RDMA-10 'bash -l -c "virsh list --all | grep ' usernet-vm4 '"' | awk '{ print $3}')
+if ([ "x$vm4" == "x" ] || [ "x$vm4" != "xrunning" ])
+then
+  ssh RDMA-10 'bash -l -c "virsh shutdown usernet-vm4"'
+  sleep 5
+fi
 rm netperf.result.*
 scp usernet-vm4:netperf.result.txt netperf.result.txt
 
