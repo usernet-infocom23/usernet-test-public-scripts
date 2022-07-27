@@ -1,5 +1,7 @@
-echo 0. demigration
-ssh RDMA-09 -t 'bash -l -c "./usernet-module/virsh-migrate.sh usernet-vm4 RDMA-10"'
+echo 0. run vm
+ssh RDMA-09 'bash -l - c "virsh start usernet-vm3"'
+ssh RDMA-10 'bash -l - c "virsh start usernet-vm4"'
+ssh RDMA-10 'bash -l -c "./start-ivshmem-server.sh"'
 
 # start netserver
 echo 1. start netserver
@@ -14,18 +16,17 @@ sleep 1
 echo 2. start netperf
 ssh usernet-vm4 "netperf -H 172.16.1.103 -p 8864 -D 1 -l 100 -P 0 > netperf.result.txt" &
 
-# sleep 50
-echo 3. sleep 50s
-sleep 50
+# sleep 25
+echo 3. sleep 25s
+sleep 25
 
 # migration
 echo 4. migration
-ssh RDMA-10 -t 'bash -l -c "./usernet-module/virsh-migrate.sh usernet-vm4 RDMA-09"'
+ssh RDMA-09 -t 'bash -l -c "./usernet-module/virsh-migrate.sh usernet-vm3 RDMA-10"'
 
 # attach
 echo 5. attach ivshmem doorbell
-ssh RDMA-09 '
-bash -l -c "./start-ivshmem-server.sh"
+ssh RDMA-10 '
 bash -l -c "./usernet-module/attach-ivshmem-doorbell.sh usernet-vm3"
 bash -l -c "./usernet-module/attach-ivshmem-doorbell.sh usernet-vm4"
 '
@@ -47,10 +48,10 @@ sleep 50
 echo 8. rollback
 ssh usernet-vm3 'bash -l -c "sudo ./usernet-module/unload-intr-driver.sh"'
 ssh usernet-vm4 'bash -l -c "sudo ./usernet-module/unload-intr-driver.sh"'
-ssh RDMA-09 '
+ssh RDMA-10 '
 bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm3"
 bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm4"
-# bash -l -c "./stop-ivshmem-server.sh"
+bash -l -c "./stop-ivshmem-server.sh"
 '
 
 # copy result from vm
