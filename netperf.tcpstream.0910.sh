@@ -4,10 +4,10 @@ ssh RDMA-09 'bash -l -c "virsh shutdown usernet-vm3"'
 ssh RDMA-10 'bash -l -c "virsh shutdown usernet-vm4"'
 ssh RDMA-09 'bash -l -c "virsh start usernet-vm3"'
 ssh RDMA-10 'bash -l -c "virsh start usernet-vm4"'
-ssh RDMA-10 '
-cd usernet-module
-bash -l -c "./start-ivshmem-server.sh"
-'
+# ssh RDMA-10 '
+# cd usernet-module
+# bash -l -c "./start-ivshmem-server.sh"
+# '
 
 # start netserver
 echo 1. start netserver
