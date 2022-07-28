@@ -44,9 +44,9 @@ sleep 1
 echo 2. start netperf
 ssh usernet-vm4 "netperf -H 172.16.1.103 -p 8864 -D 1 -l 100 -P 0 > netperf.result.txt" &
 
-# sleep 25
-echo 3. sleep 25s
-sleep 25
+# sleep 40
+echo 3. sleep 40s
+sleep 40
 
 # migration
 echo 4. migration
