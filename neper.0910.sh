@@ -33,7 +33,7 @@ fi
 
 # start netserver
 echo 1. start neper run script
-rm -rf result && mkdir result
+rm -rf result.neper && mkdir result.neper
 wget https://github.com/usernet-infocom23/usernet-test/raw/main/neper.run.sh -O neper.run.sh
 chmod +x neper.run.sh
 ./neper.run.sh &
@@ -80,7 +80,7 @@ bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm4"
 # extract csv from raw result
 echo 10. extract csv from raw result
 wget https://github.com/usernet-infocom23/usernet-test/raw/main/extract.neper.py -O extract.neper.py -q
-python3 extract.neper.py result > neper.result.csv
+python3 extract.neper.py result.neper > neper.result.csv
 
 # plot chart
 echo 11. plot chart
