@@ -42,8 +42,8 @@ bash -l -c './neper.run.sh' &
 neperspid=$!
 
 # sleep 25
-echo 3. sleep 25s
-sleep 25
+echo 3. sleep 40s
+sleep 40
 
 # migration
 echo 4. migration
