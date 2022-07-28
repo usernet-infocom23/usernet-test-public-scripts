@@ -1,3 +1,4 @@
+ssh usernet-vm3 rm tcp_stream*
 for i in {1..20}
 do
   echo start $i
