@@ -8,20 +8,22 @@ vm3=$(ssh RDMA-10 'bash -l -c "virsh list --all | grep ' usernet-vm3 '"' | awk '
 if [ "x$vm3" == "xrunning" ]
 then
   ssh RDMA-10 'bash -l -c "virsh shutdown usernet-vm3"'
-  sleep 5
 fi
 vm3=$(ssh RDMA-09 'bash -l -c "virsh list --all | grep ' usernet-vm3 '"' | awk '{ print $3}')
-if ([ "x$vm3" == "x" ] || [ "x$vm3" != "xrunning" ])
+if [ "x$vm3" == "xrunning" ]
 then
-  ssh RDMA-09 'bash -l -c "virsh start usernet-vm3"'
-  sleep 5
+  ssh RDMA-09 'bash -l -c "virsh shutdown usernet-vm3"'
 fi
 vm4=$(ssh RDMA-10 'bash -l -c "virsh list --all | grep ' usernet-vm4 '"' | awk '{ print $3}')
-if ([ "x$vm4" == "x" ] || [ "x$vm4" != "xrunning" ])
+if [ "x$vm4" == "xrunning" ]
 then
-  ssh RDMA-10 'bash -l -c "virsh start usernet-vm4"'
-  sleep 5
+  ssh RDMA-10 'bash -l -c "virsh shutdown usernet-vm4"'
 fi
+
+sleep 5
+
+ssh RDMA-09 'bash -l -c "virsh start usernet-vm3"'
+ssh RDMA-10 'bash -l -c "virsh start usernet-vm4"'
 
 sleep 10
 
