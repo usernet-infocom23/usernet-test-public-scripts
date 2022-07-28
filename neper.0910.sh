@@ -38,7 +38,7 @@ echo 1. start neper run script
 rm -rf result.neper && mkdir result.neper
 wget https://github.com/usernet-infocom23/usernet-test/raw/main/neper.run.sh -O neper.run.sh
 chmod +x neper.run.sh
-./neper.run.sh &
+bash -l -c './neper.run.sh' &
 neperspid=$!
 
 # sleep 25
