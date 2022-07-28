@@ -33,7 +33,7 @@ x = []
 y = []
 
 for row in data:
-    x.append(float(row[0]))
+    x.append(float(row[0]) * 5.0)
     y.append(float(row[1]))
 
 f = plt.figure()
