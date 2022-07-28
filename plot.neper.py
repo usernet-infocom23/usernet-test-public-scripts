@@ -69,4 +69,4 @@ plt.annotate('{}mb/s'.format(y[minyindex]),
 
 plt.tight_layout()
 plt.savefig('neper.png')
-plt.show()
+
