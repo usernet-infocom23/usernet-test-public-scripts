@@ -23,6 +23,8 @@ then
   sleep 5
 fi
 
+sleep 10
+
 # ssh RDMA-10 '
 # cd usernet-module
 # bash -l -c "./start-ivshmem-server.sh"
