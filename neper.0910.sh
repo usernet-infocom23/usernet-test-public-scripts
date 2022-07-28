@@ -64,9 +64,9 @@ echo 6.1. test getpeerid
 ssh usernet-vm3 'sudo ./usernet-module/ivshmem-getpeerid'
 ssh usernet-vm4 'sudo ./usernet-module/ivshmem-getpeerid'
 
-# sleep 50
-echo 7. sleep 50s
-sleep 50
+# sleep 100
+echo 7. sleep 100s
+sleep 100
 
 # recovery
 echo 8. rollback
