@@ -38,7 +38,7 @@ sleep 10
 # start netserver
 echo 1. start neper run script
 rm -rf result.neper && mkdir result.neper
-wget https://github.com/usernet-infocom23/usernet-test/raw/main/neper.run.sh -O neper.run.sh
+wget https://github.com/usernet-infocom23/usernet-test-public-scripts/raw/main/neper.run.sh -O neper.run.sh
 chmod +x neper.run.sh
 bash -l -c './neper.run.sh' &
 neperspid=$!
@@ -85,12 +85,12 @@ bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm4"
 
 # extract csv from raw result
 echo 10. extract csv from raw result
-wget https://github.com/usernet-infocom23/usernet-test/raw/main/extract.neper.py -O extract.neper.py -q
+wget https://github.com/usernet-infocom23/usernet-test-public-scripts/raw/main/extract.neper.py -O extract.neper.py -q
 python3 extract.neper.py result.neper > neper.result.csv
 
 # plot chart
 echo 11. plot chart
-wget https://github.com/usernet-infocom23/usernet-test/raw/main/plot.neper.py -O plot.neper.py -q
+wget https://github.com/usernet-infocom23/usernet-test-public-scripts/raw/main/plot.neper.py -O plot.neper.py -q
 python3 plot.neper.py neper.result.csv
 
 # upload result to s3
