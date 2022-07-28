@@ -23,11 +23,11 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script: |
-            rm netperf.tcpstream.0910.sh
-            wget https://github.com/usernet-infocom23/usernet-test/raw/main/netperf.tcpstream.0910.sh
-            chmod +x netperf.tcpstream.0910.sh
-            ./netperf.tcpstream.0910.sh
+          script: 
+            rm neper.0910.sh
+            wget https://github.com/usernet-infocom23/usernet-test/raw/main/neper.0910.sh
+            chmod +x neper.0910.sh
+            bash -l -c './neper.0910.sh'
       - name: retry executing remote ssh commands
         id: ssh2
         if: ${{ failure() && steps.ssh1.outcome == 'failure' }}
@@ -42,7 +42,7 @@ jobs:
             rm neper.0910.sh
             wget https://github.com/usernet-infocom23/usernet-test/raw/main/neper.0910.sh
             chmod +x neper.0910.sh
-            ./neper.0910.sh
+            bash -l -c './neper.0910.sh'
       - name: Download Result File
         if: ${{ always() && ((steps.ssh1.outcome.exit_code == 0) || (steps.ssh2.outcome.exit_code == 0)) }}
         run: |
