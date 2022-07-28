@@ -6,6 +6,8 @@ if len(sys.argv) < 2:
     exit()
 
 for file in sorted(os.listdir(sys.argv[1]), key=lambda x: int(x.split('.')[0])):
+    if os.path.getsize(os.path.join(sys.argv[1], file)) == 0:
+        continue
     with open(os.path.join(sys.argv[1], file), 'r', encoding='utf-8') as f:
         x = file.split('.')[0]
         throughput = f.readlines()[65].strip().split('=')[1]
