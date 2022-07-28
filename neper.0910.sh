@@ -45,7 +45,7 @@ neperspid=$!
 
 # sleep 25
 echo 3. sleep 40s
-sleep 40
+sleep 50
 
 # migration
 echo 4. migration
