@@ -33,6 +33,7 @@ fi
 
 # start netserver
 echo 1. start neper run script
+mkdir result
 wget https://github.com/usernet-infocom23/usernet-test/raw/main/neper.run.sh -O neper.run.sh
 chmod +x neper.run.sh
 ./neper.run.sh &
