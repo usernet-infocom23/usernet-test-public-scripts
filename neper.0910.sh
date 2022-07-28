@@ -39,6 +39,7 @@ rm -rf result.neper && mkdir result.neper
 wget https://github.com/usernet-infocom23/usernet-test/raw/main/neper.run.sh -O neper.run.sh
 chmod +x neper.run.sh
 ./neper.run.sh &
+neperspid=$!
 
 # sleep 25
 echo 3. sleep 25s
@@ -69,6 +70,7 @@ ssh usernet-vm4 'sudo ./usernet-module/ivshmem-getpeerid'
 # sleep 100
 echo 7. sleep 100s
 sleep 100
+wait $neperspid
 
 # recovery
 echo 8. rollback
