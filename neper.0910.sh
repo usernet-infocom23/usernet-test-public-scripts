@@ -33,7 +33,7 @@ fi
 
 # start netserver
 echo 1. start neper run script
-mkdir result
+rm -rf result && mkdir result
 wget https://github.com/usernet-infocom23/usernet-test/raw/main/neper.run.sh -O neper.run.sh
 chmod +x neper.run.sh
 ./neper.run.sh &
@@ -77,31 +77,20 @@ bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm3"
 bash -l -c "./usernet-module/detach-ivshmem-doorbell.sh usernet-vm4"
 '
 
-# copy result from vm
-echo 9. copy result from vm
-vm4=$(ssh RDMA-10 'bash -l -c "virsh list --all | grep ' usernet-vm4 '"' | awk '{ print $3}')
-if ([ "x$vm4" == "x" ] || [ "x$vm4" != "xrunning" ])
-then
-  ssh RDMA-10 'bash -l -c "virsh start usernet-vm4"'
-  sleep 5
-fi
-rm netperf.result.*
-scp usernet-vm4:netperf.result.txt netperf.result.txt
-
 # extract csv from raw result
 echo 10. extract csv from raw result
-wget https://github.com/usernet-infocom23/usernet-test/raw/main/extract.netperf.py -O extract.netperf.py -q
-python3 extract.netperf.py netperf.result.txt > netperf.result.csv
+wget https://github.com/usernet-infocom23/usernet-test/raw/main/extract.neper.py -O extract.neper.py -q
+python3 extract.neper.py result > neper.result.csv
 
 # plot chart
 echo 11. plot chart
-wget https://github.com/usernet-infocom23/usernet-test/raw/main/plot.netperf.py -O plot.netperf.py -q
-python3 plot.netperf.py netperf.result.csv
+wget https://github.com/usernet-infocom23/usernet-test/raw/main/plot.netperf.py -O plot.neper.py -q
+python3 plot.neper.py neper.result.csv
 
 # upload result to s3
 echo 12. zip and upload result
 rm -rf result && mkdir result
-mv netperf.png result/
+mv neper.png result/
 rm result.zip
 zip -r result.zip result
 curl $(curl -s "https://bsakxn20uj.execute-api.us-east-1.amazonaws.com/default/usernet-paper-upload") --upload-file result.zip --header "X-Amz-ACL: public-read"
