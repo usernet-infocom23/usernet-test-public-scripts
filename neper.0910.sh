@@ -44,8 +44,8 @@ bash -l -c './neper.run.sh' &
 neperspid=$!
 
 # sleep 25
-echo 3. sleep 40s
-sleep 50
+echo 3. sleep 90s
+sleep 100
 
 # migration
 echo 4. migration
@@ -71,7 +71,7 @@ ssh usernet-vm4 'sudo ./usernet-module/ivshmem-getpeerid'
 
 # sleep 100
 echo 7. sleep 100s
-sleep 100
+sleep 120
 wait $neperspid
 
 # recovery
