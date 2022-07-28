@@ -1,5 +1,5 @@
 ssh usernet-vm3 rm tcp_stream*
-for i in {1..20}
+for i in {1..40}
 do
   echo start $i
   ssh usernet-vm3 ./neper/tcp_stream > result.neper/$i.txt &
