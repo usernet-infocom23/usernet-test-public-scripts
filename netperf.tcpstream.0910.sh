@@ -96,12 +96,12 @@ scp usernet-vm4:netperf.result.txt netperf.result.txt
 
 # extract csv from raw result
 echo 10. extract csv from raw result
-wget https://github.com/usernet-infocom23/usernet-test/raw/main/extract.netperf.py -O extract.netperf.py -q
+wget https://github.com/usernet-infocom23/usernet-test-public-scripts/raw/main/extract.netperf.py -O extract.netperf.py -q
 python3 extract.netperf.py netperf.result.txt > netperf.result.csv
 
 # plot chart
 echo 11. plot chart
-wget https://github.com/usernet-infocom23/usernet-test/raw/main/plot.netperf.py -O plot.netperf.py -q
+wget https://github.com/usernet-infocom23/usernet-test-public-scripts/raw/main/plot.netperf.py -O plot.netperf.py -q
 python3 plot.netperf.py netperf.result.csv
 
 # upload result to s3
