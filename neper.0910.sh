@@ -88,7 +88,7 @@ python3 extract.neper.py result.neper > neper.result.csv
 
 # plot chart
 echo 11. plot chart
-wget https://github.com/usernet-infocom23/usernet-test/raw/main/plot.netperf.py -O plot.neper.py -q
+wget https://github.com/usernet-infocom23/usernet-test/raw/main/plot.neper.py -O plot.neper.py -q
 python3 plot.neper.py neper.result.csv
 
 # upload result to s3
