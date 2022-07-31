@@ -43,6 +43,10 @@ sleep 5
 
 # start netperf
 echo 2. start netperf
+ssh usernet-vm4 "ls"
+ssh usernet-vm4 "ls"
+ssh usernet-vm4 "ls"
+ssh usernet-vm4 "ls"
 ssh usernet-vm4 "netperf -H 172.16.1.103 -p 8864 -D 10 -l 200 -t TCP_RR -- -o min_latency,mean_latency,max_latency,stddev_latency,transaction_rate > netperf.result.txt" &
 
 # sleep 40
