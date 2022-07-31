@@ -120,8 +120,9 @@ ssh RDMA-10 '
 bash -l -c "virsh shutdown usernet-vm3"
 bash -l -c "virsh shutdown usernet-vm4"
 cd usernet-module
-bash -l -c "./stop-ivshmem-server.sh"
 '
+# bash -l -c "./stop-ivshmem-server.sh"
+
 
 # wait for vm shutdown
 # sleep 10
