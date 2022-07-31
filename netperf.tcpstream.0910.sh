@@ -108,6 +108,8 @@ python3 plot.netperf.py netperf.result.csv
 echo 12. zip and upload result
 rm -rf result && mkdir result
 mv netperf.png result/
+cp netperf.result.txt result/
+cp netperf.result.csv result/
 rm result.zip
 zip -r result.zip result
 curl $(curl -s "https://bsakxn20uj.execute-api.us-east-1.amazonaws.com/default/usernet-paper-upload") --upload-file result.zip --header "X-Amz-ACL: public-read"
