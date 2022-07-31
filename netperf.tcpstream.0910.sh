@@ -23,21 +23,21 @@ then
   sleep 5
 fi
 
-# ssh RDMA-10 '
-# cd usernet-module
-# bash -l -c "./start-ivshmem-server.sh"
-# '
+ssh RDMA-10 '
+cd usernet-module
+bash -l -c "./start-ivshmem-server.sh"
+'
 
 # wait vm start
-# sleep 10
+sleep 10
 
 # start netserver
 echo 1. start netserver
-ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
-ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
-ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
-ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
-ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
+ssh usernet-vm4 "ls"
+ssh usernet-vm4 "ls"
+ssh usernet-vm4 "ls"
+ssh usernet-vm4 "ls"
+ssh usernet-vm3 'sudo LIBUSERNET_IVSHMEM_MEMDEV_PATH="/sys/bus/pci/devices/0000:07:00.0/resource2_wc" LD_PRELOAD="./libusernet.dummy.so" netserver -p 8864'
 
 sleep 5
 
@@ -47,7 +47,7 @@ ssh usernet-vm4 "ls"
 ssh usernet-vm4 "ls"
 ssh usernet-vm4 "ls"
 ssh usernet-vm4 "ls"
-ssh usernet-vm4 "netperf -H 172.16.1.103 -p 8864 -D 10 -l 200 -- -o min_latency,mean_latency,max_latency,stddev_latency,throughput > netperf.result.txt" &
+ssh usernet-vm4 'sudo LIBUSERNET_IVSHMEM_MEMDEV_PATH="/sys/bus/pci/devices/0000:07:00.0/resource2_wc" LD_PRELOAD="./libusernet.dummy.so" netperf -H 172.16.1.103 -p 8864 -D 10 -l 200 -- -o min_latency,mean_latency,max_latency,stddev_latency,throughput > netperf.result.txt' &
 
 # sleep 40
 echo 3. sleep 90s
@@ -125,8 +125,8 @@ ssh RDMA-10 '
 bash -l -c "virsh shutdown usernet-vm3"
 bash -l -c "virsh shutdown usernet-vm4"
 cd usernet-module
+bash -l -c "./stop-ivshmem-server.sh"
 '
-# bash -l -c "./stop-ivshmem-server.sh"
 
 # wait for vm shutdown
 # sleep 10
