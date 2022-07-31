@@ -39,7 +39,7 @@ ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
 ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
 ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
 
-sleep 1
+sleep 5
 
 # start netperf
 echo 2. start netperf
