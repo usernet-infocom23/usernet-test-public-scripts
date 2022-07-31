@@ -27,10 +27,10 @@ ssh RDMA-10 'bash -l -c "virsh start usernet-vm4"'
 
 sleep 10
 
-# ssh RDMA-10 '
-# cd usernet-module
-# bash -l -c "./start-ivshmem-server.sh"
-# '
+ssh RDMA-10 '
+cd usernet-module
+bash -l -c "./start-ivshmem-server.sh"
+'
 
 # wait vm start
 # sleep 10
