@@ -33,10 +33,11 @@ fi
 
 # start netserver
 echo 1. start netserver
-ssh usernet-vm3 "
-sudo killall netserver
-netserver -p 8864
-"
+ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
+ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
+ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
+ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
+ssh usernet-vm3 "sudo killall netserver && netserver -p 8864"
 
 sleep 1
 
